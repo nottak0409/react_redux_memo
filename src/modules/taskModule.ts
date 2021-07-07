@@ -87,3 +87,19 @@ const taskModule = createSlice({
         },
     },
 });
+
+export const { actions: taskActions } = taskModule;
+export default taskModule;
+
+export const saveTasks = () => {
+    return async (dispatch, getState) => {
+        const { task } = getState();
+        if (task.saveState.isLoading) {
+            return;
+        }
+        dispatch(taskActions.setSaveState({isLoading: true, isSuccess: false}));
+        setTimeout(() => {
+            dispatch(taskActions.setSaveState({isLoading: false, isSuccess: true}));
+        }, 1000);
+    };
+};
