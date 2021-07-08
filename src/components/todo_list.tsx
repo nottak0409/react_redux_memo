@@ -19,4 +19,29 @@ const TodoList: React.FC<{ list: ITask[], isEndTasks: boolean }> = ({ list, isEn
     if (list.length < 1) {
         return null;
     }
+    return (
+        <table>
+            <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            {targetList.map((task) => {
+                return (
+                    <tr key={task.id}>
+                        <td>{task.id}</td>
+                        <td>{task.name}</td>
+                        <td>
+                            <button onClick={() => editTask(task)} disabled={isEndTasks}>Edit</button>
+                            <button onClick={() => endTask(task)} disabled={isEndTasks}>End</button>
+                        </td>
+                    </tr>
+                );
+            })}
+            </tbody>
+        </table>
+    );
 };
+
+export default TodoList;
